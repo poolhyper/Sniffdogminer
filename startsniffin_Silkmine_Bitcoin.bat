@@ -1,0 +1,1 @@
+powershell -version 5.0 -noexit -executionpolicy bypass -windowstyle maximized -command "&.\SniffDogBitcoin.ps1 -StatsInterval 1 -Workername Miner01 -Currency USD -interval 600 -Delay 1 -Wallet 1AFJYNCbJCvYaeR2Lzwh3TPJWoS8ci4q9L -Location US -PoolName silkmine -Type nvidia -Algorithm Blake2s -Donate 0

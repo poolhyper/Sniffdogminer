@@ -25,7 +25,7 @@ $Location = "US"
 
 
 $silkmine_Request | Get-Member -MemberType NoteProperty -ErrorAction Ignore | Select-Object -ExpandProperty Name | Where-Object {$silkmine_Request.$_.hashrate -gt 0} | foreach {
-    $silkmine_Host = "$_.mine.silkmine.com"
+    $silkmine_Host = "mine.silkmine.com"
     $silkmine_Port = $silkmine_Request.$_.port
     $silkmine_Algorithm = Get-Algorithm $silkmine_Request.$_.name
     $silkmine_Coin = $silkmine_Request.$_.coins
@@ -38,22 +38,8 @@ $silkmine_Request | Get-Member -MemberType NoteProperty -ErrorAction Ignore | Se
     switch($silkmine_Algorithm)
     {
         
-#	"sha256"{$Divisor *= 1000000}
-    "blake2s"{$Divisor *= 1000}
-	"lyra2v2"{$Divisor *= 1000}
-	"myr-gr"{$Divisor *= 1000}
-	"neoscrypt"{$Divisor *= 1000}
-	"nist5"{$Divisor *= 1000}
-    "phi"{$Divisor *= 1000}
-	"qubit"{$Divisor *= 1000}
-#	"scrypt"{$Divisor *= 1000}
-    "qubit"{$Divisor *= 1000}
-    "skein"{$Divisor *= 1000}
-	"tribus"{$Divisor *= 1000}
-	"x17"{$Divisor /= 1000}
-#    "yescrypt"{$Divisor /= 1000}
+	"Blake2s"{$Divisor /= 1000}
         
-         
     }
 
     if((Get-Stat -Name "$($Name)_$($silkmine_Algorithm)_Profit") -eq $null){$Stat = Set-Stat -Name "$($Name)_$($silkmine_Algorithm)_Profit" -Value ([Double]$silkmine_Request.$_.estimate_last24h/$Divisor*(1-($silkmine_Request.$_.fees/100)))}
