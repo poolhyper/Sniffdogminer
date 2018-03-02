@@ -38,7 +38,7 @@ $silkmine_Request | Get-Member -MemberType NoteProperty -ErrorAction Ignore | Se
     switch($silkmine_Algorithm)
     {
         
-	"Blake2s"{$Divisor /= 1000}
+	"Blake2s"{$Divisor *= 1000}
         
     }
 
